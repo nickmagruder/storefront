@@ -1,0 +1,1 @@
+export const DISPLAY_CATEGORY = 'DISPLAY_CATEGORY';
