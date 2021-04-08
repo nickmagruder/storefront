@@ -1,8 +1,10 @@
-import * as actionTypes from './actions';
+/* import * as actionTypes from './actions'; */
 
-let initialState = [
 
-  {
+let initialState = {
+count: 0,
+activeProduct: '',
+productList: [{
     _id: 243543475,
     category: 'bicycles',
     name: 'Haro BMX',
@@ -37,39 +39,16 @@ let initialState = [
     price: 1,
     quantity: 4762, 
     imageURL: '../../../img/cat.jpg'
-  },
-]
+  }]
+}
 
 
  function ProductsReducer(state = initialState, action) {
   let { type, payload } = action;
-
-/*   switch (type) {
-    case "ADD_ONE_TO_VOTES":
-
-      totalVotes = state.total + 1;
-      candidates = state.candidates.map(candidate => {
-        if (candidate.name === payload) {
-          return { name: candidate.name, votes: candidate.votes + 1 }
-        }
-        return candidate
-      });
-
-      return { total: totalVotes, candidates: candidates }
-    case "SUBRTACT_ONE_FROM_VOES":
-
-      totalVotes = state.total - 1;
-      candidates = state.candidates.map(candidate => {
-        if (candidate.name === payload) {
-          return { name: candidate.name, votes: candidate.votes - 1 }
-        }
-        return candidate;
-      });
-
-      return { total: totalVotes, candidates: candidates }
-    default:
       return state;
-  } */
-}
+  };
+
+
+
 
 export default ProductsReducer;

@@ -17,7 +17,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 import theme from '../../uitheme';
 
-const generalStyles = makeStyles({
+/* const generalStyles = makeStyles({
   root: {
     background: 'linear-gradient(0deg, #000, #FFF)',
     fontSize: 30,
@@ -28,14 +28,10 @@ const generalStyles = makeStyles({
     color: 'black',
     padding: '20px 30px'
   }
-})
+}) */
 
-function H1Styled() {
-  const classes = generalStyles();
-  return <Typography className={classes.root}>Browse Categories</Typography>
-}
 
-function displayProducts() {
+/* function displayProducts() {
   {props.products.productList.map((product, index) => {
     if (product.category === props.activeCategory) {
       return (
@@ -55,48 +51,22 @@ function displayProducts() {
     } else {
       return null;
     }
-  }
+  } */
 
 
 
-  function Products() {
-      return (
-        <ThemeProvider theme={theme}>
-          <Container maxwidth="xs">
+function Products() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Container maxwidth="xs">
+        {/*             <displayProducts /> */}
+        <h1>Products</h1>
+      </Container>
+    </ThemeProvider>
+  );
+}
 
-            <H1Styled />
-
-            <ButtonGroup>
-              <Button
-                onClick={() => alert('hello')}
-                style={{
-                  fontSize: 24
-                }}
-                variant="contained"
-                color="primary"
-                size="large">
-                Category 1
-        </Button>
-              <Button
-                onClick={() => alert('hello')}
-                style={{
-                  fontSize: 24
-                }}
-                variant="contained"
-                color="secondary"
-                size="large">
-                Category 2
-        </Button>
-            </ButtonGroup>
-
-            <displayProducts />
-
-          </Container>
-        </ThemeProvider>
-      );
-    }
-
-    const mapStateToProps = state => {
+/*     const mapStateToProps = state => {
       return { products: state.products, activeCategory: state.categories.activeCategory }
     }
     
@@ -104,6 +74,8 @@ function displayProducts() {
       inactive,
       active,
       getProducts,
-    }
-    
-    export default connect(mapStateToProps, mapDispatchToProps)(productViewer);
+    } */
+
+/*   export default connect(mapStateToProps, mapDispatchToProps)(productViewer); */
+
+export default Products;
