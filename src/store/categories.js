@@ -1,8 +1,8 @@
-import * as actionTypes from './actions';
+/* import * as actionTypes from './actions';
+import axios from 'axios'; */
 
 let initialState = {
-  activeCategory: '',
-  activeDesctription: '',
+  activeCategoryID: '',
   categoryList: [
     {
       _id: 213434598,
@@ -20,24 +20,33 @@ let initialState = {
 }
 
 
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case actionTypes.INITIAL_LOAD:
-      return initialState;
+export default function categoriesReducer(state = initialState, action) {
+  let { type, payload } = action;
 
-    case actionTypes.SELECT_CATEGORY:
+  switch (type) {
+    case 'INITIAL_CATEGORY_LOAD':
+      return initialState;
+      
+    case 'CATEGORY_ACTIVE':
       return {
-        ...state, activeCategory: payload.category, activeDesctription: payload.description
+        ...state, activeCategoryID: payload.activeCategoryID
       };
     default:
       return state;
-  }
-};
-
-
-function CategoriesReducer(state = initialState, action) {
-  let { type, payload } = action;
+  };
 }
 
+export function INITIAL_CATEGORY_LOAD() {
+  return {
+    type: 'INITIAL_CATEGORY_LOAD'
+  };
+}
 
-export default CategoriesReducer;
+export function CATEGORY_ACTIVE(activeCategoryID) {
+  return {
+    type: 'CATEGORY_ACTIVE', 
+    payload: {
+      activeCategoryID,
+    }
+  };
+}
