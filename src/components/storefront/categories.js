@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 /* import theme from '../../uitheme'; */
 
-import { INITIAL_CATEGORY_LOAD, CATEGORY_ACTIVE } from '../../store/categories'  
+import { INITIAL_CATEGORY_LOAD, CATEGORY_ACTIVE } from '../../store/categories'
 
 const generalStyles = makeStyles({
   root: {
@@ -35,39 +35,27 @@ const Categories = props => {
 
       <ButtonGroup>
         {console.log(props)}
-{/*         {props.categoryList.map(categories => {
-          return (
-            <Button>
-              onClick={ props.onCategoryChange(props._id) }
-            style={{
-                fontSize: 24
-              }}
-            variant="contained"
-            color="primary"
-            size="large"
-              {props.categoryList.DisplayName}
-            </Button>
-          )
-        })} */}
+        <Button onClick={() => props.CATEGORY_ACTIVE('Electronics', 'Electrical')}>Electronics</Button>
+        <Button onClick={() => props.CATEGORY_ACTIVE('Food', 'Edible')}>Food</Button>
       </ButtonGroup>
 
     </>
   )
 }
 
-const mapStateToProps = state => {
+
+const mapStateToProps = (state) => {
   return {
-    productlist: state.productlist,
-    categoryList: state.categoryList,
-    activeCategory: state.activeCategory,
-    activeDescription: state.activeDescription
+    products: state.products, 
+    activeCategory: state.categories.activeCategory,
+    activeDescription: state.categories.activeDescription,
   }
 }
 
 const mapDispatchToProps = {
   INITIAL_CATEGORY_LOAD,
   CATEGORY_ACTIVE,
-};  
+};
 
 // Max version:
 /* const mapDispatchToProps = dispatch => {

@@ -1,7 +1,13 @@
 /* import * as actionTypes from './actions'; */
-
+import axios from 'axios';
 
 let initialState = {
+  count: 0,
+  activeProduct: '',
+  productsList: []
+  }
+
+/* let initialState = {
 count: 0,
 activeProduct: '',
 productList: [{
@@ -40,15 +46,40 @@ productList: [{
     quantity: 4762, 
     imageURL: '../../../img/cat.jpg'
   }]
-}
+} */
 
+  export default function ProductsReducer(state = initialState, action) {
+    const {type, payload} = action;
+  
 
- function ProductsReducer(state = initialState, action) {
-  let { type, payload } = action;
+    switch(type) {
+      case "LOAD_PRODUCTS":
+        return {
+          count: payload.count,
+          productsList: payload.results,
+        }
+
+      case "PRODUCTS_ACTIVATED":
+        const products = getProducts(payload.category);
+        return {...state, products: products}
+      default: 
       return state;
-  };
+    }
+  }
+  
 
-
-
-
-export default ProductsReducer;
+  export const productsLoader = () => (dispatch, getState) => {
+    return axios.get('https://api-js401.herokuapp.com/api/v1/products')
+    .then(response => {
+      dispatch({
+        type: 'LOAD_PRODUCTS',
+        payload: response.data
+      })
+    })
+  }
+  
+  export function getProducts(category){
+    const products = initialState.productsList;
+    const response = products.filter(product => product.category === category);
+    return response;
+  }

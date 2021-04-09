@@ -2,39 +2,40 @@
 import axios from 'axios'; */
 
 let initialState = {
-  activeCategoryID: '',
+//activeCategoryID: '', 
+  activeCategory: '',
+  activeDescription: '',
   categoryList: [
     {
       _id: 213434598,
-      name: 'bicycles',
-      displayName: 'Bicycles',
-      description: '2 wheels, rubber side down',
+      name: 'electronics',
+      displayName: 'Electronics',
+      description: 'Electrical',
     },
     {
       _id: 90563425,
-      name: 'pets',
-      displayName: 'Pets',
-      description: 'Usually furry, sometimes cuddly',
+      name: 'food',
+      displayName: 'Food',
+      description: 'Edible',
     },
   ]
 }
 
 
-export default function categoriesReducer(state = initialState, action) {
-  let { type, payload } = action;
+export default function categoriesReducer(state = initialState, action){
+  const {type, payload} = action;
 
   switch (type) {
-    case 'INITIAL_CATEGORY_LOAD':
+    case "INITIAL_CATEGORY_LOAD":
       return initialState;
-      
-    case 'CATEGORY_ACTIVE':
-      return {
-        ...state, activeCategoryID: payload.activeCategoryID
-      };
+
+    case "CATEGORY_ACTIVE":
+      return {...state, activeCategory: payload.activeCategory, activeDescription: payload.activeDescription};
     default:
       return state;
-  };
+  }
 }
+
 
 export function INITIAL_CATEGORY_LOAD() {
   return {
@@ -42,11 +43,13 @@ export function INITIAL_CATEGORY_LOAD() {
   };
 }
 
-export function CATEGORY_ACTIVE(activeCategoryID) {
+
+export function CATEGORY_ACTIVE(activeCategory, activeDescription) {
   return {
     type: 'CATEGORY_ACTIVE', 
     payload: {
-      activeCategoryID,
+      activeCategory,
+      activeDescription
     }
-  };
+  }
 }
